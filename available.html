@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLS</title>
+    <link rel="stylesheet" href="Holy.css">
+</head>
+  <style>
+        /* Consistent with your existing style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .nav {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .nav li {
+            transition: transform 0.3s ease;
+        }
+        
+        .nav li:hover {
+            transform: translateY(-3px);
+        }
+        
+        .nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Courses Page Specific Styles */
+        .courses-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(74, 100, 145, 0.8)), 
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .courses-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-icon {
+            background: #4a6491;
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+        }
+        
+        .course-content h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .course-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .enroll-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .enroll-btn:hover {
+            background: linear-gradient(to right, #4a6491, #2c3e50);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .courses-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .courses-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://kit.fontawesome.com/c458120cbb.js" crossorigin="anonymous"></script>
+<body>
+   <div class="nav">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="about.html"><i class="fa-solid fa-address-card"></i>About us</a></li>
+        <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact us</a></li>
+        <li><a href="available.html"><i class="fa-solid fa-book"></i>Avaliable caurses</a></li>
+        <li><a href="Login.html"><i class="fa-solid fa-circle-user"></i>Login</a></li>
+        <li><a href="sign up.html"><i class="fa-solid fa-circle-user"></i>Sign up</a></li>
+    </ul>
+   </div> 
+   <div class="courses-hero">
+       <h1>Our Available Courses</h1>
+       <p>Choose from our comprehensive selection of programming and design courses</p>
+   </div>
+   <div class="courses-container">
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-js"></i>
+           </div>
+           <div class="course-content">
+               <h3>JavaScript</h3>
+               <p>Master the language of the web. Learn modern JavaScript (ES6+) for frontend and backend development.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-html5"></i>
+           </div>
+           <div class="course-content">
+               <h3>HTML</h3>
+               <p>Learn the foundation of web development. Build structured, semantic web pages with HTML5.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-css3-alt"></i>
+           </div>
+           <div class="course-content">
+               <h3>CSS</h3>
+               <p>Style your websites beautifully. Master CSS3, Flexbox, Grid, and responsive design principles.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-python"></i>
+           </div>
+           <div class="course-content">
+               <h3>Python</h3>
+               <p>Learn one of the most versatile programming languages for web, data science, and automation.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-php"></i>
+           </div>
+           <div class="course-content">
+               <h3>PHP</h3>
+               <p>Build dynamic websites and applications with this powerful server-side scripting language.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fas fa-paint-brush"></i>
+           </div>
+           <div class="course-content">
+               <h3>Graphics Design</h3>
+               <p>Master design principles, tools like Photoshop and Illustrator, and create stunning visuals.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+   </div>
+ <footer class="site-footer">
+       <div class="footer-content">
+           <div class="footer-section">
+               <h3>Quick Links</h3>
+               <ul>
+                   <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                   <li><a href="about.html"><i class="fa-solid fa-address-card"></i>About Us</a></li>
+                   <li><a href="contact.html"><i class="fa-solid fa-phone"></i>contact</a></li>
+                   <li><a href="available.html"><i class="fa-solid fa-book"></i>Courses</a></li>
+                   <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
+               </ul>
+           </div>
+           <div class="footer-section">
+               <h3>Contact Info</h3>
+               <p><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</p>
+               <p><i class="fas fa-phone"></i>0796318028</p>
+               <p><i class="fas fa-envelope"></i> info@flscourses.com</p>
+           </div>
+           <div class="footer-section">
+               <h3>Follow Us</h3>
+               <div class="social-icons">
+                   <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                   <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+                   <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                   <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+               </div>
+           </div>
+       </div>
+       <div class="footer-bottom">
+           <p>&copy; 2025 FLS Computer Courses. All Rights Reserved.</p>
+       </div>
+   </footer>
+</body>
+</html>

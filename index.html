@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLS</title>
+    <link rel="stylesheet" href="Holy.css">
+</head>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .photo-card {
+            width: 350px;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(44, 62, 80, 0.9), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+         .index-hero {
+             background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(74, 100, 145, 0.8)), 
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .index-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .index-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Hover Effects */
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-card:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Click Effects */
+        .photo-card:active {
+            transform: scale(0.98);
+        }
+        
+        .photo-card.active {
+            border: 4px solid #f1c40f;
+        }
+        
+        /* Action-based Classes */
+        .highlight {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
+        }
+        
+        .completed {
+            filter: grayscale(100%);
+            position: relative;
+        }
+        
+        .completed::after {
+            content: "✓ COMPLETED";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .photo-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+       .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-icon {
+            background: #4a6491;
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+        }
+        
+        .course-content h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .course-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .enroll-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .enroll-btn:hover {
+            background: linear-gradient(to right, #4a6491, #2c3e50);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .courses-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .courses-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+    </style>
+<script src="https://kit.fontawesome.com/c458120cbb.js" crossorigin="anonymous"></script>
+<body>
+   <div class="nav">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li><a href="about.html"><i class="fa-solid fa-address-card"></i>About us</a></li>
+        <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact us</a></li>
+        <li><a href="available.html"><i class="fa-solid fa-book"></i>Avaliable caurses</a></li>
+        <li><a href="Login.html"><i class="fa-solid fa-circle-user"></i>Login</a></li>
+        <li><a href="sign up.html"><i class="fa-solid fa-circle-user"></i>Sign up</a></li>
+    </ul>
+   </div> 
+       <div class="index-hero">
+       <h1>Welcome to our pratform</h1>
+       <p>We're here to help with courses about our programming</p>
+   </div>
+   <div class="p">
+    <p>Welcome to our website <br> here you will gain some skills <br> about computer courses <br> if you don't have an account sign up <br> by cliking on join button. </p>
+   </div>
+<div class="courses-container" style="  background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(74, 100, 145, 0.8)), 
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-js"></i>
+           </div>
+           <div class="course-content">
+               <h3>JavaScript</h3>
+               <p>Master the language of the web. Learn modern JavaScript (ES6+) for frontend and backend development.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-html5"></i>
+           </div>
+           <div class="course-content">
+               <h3>HTML</h3>
+               <p>Learn the foundation of web development. Build structured, semantic web pages with HTML5.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-css3-alt"></i>
+           </div>
+           <div class="course-content">
+               <h3>CSS</h3>
+               <p>Style your websites beautifully. Master CSS3, Flexbox, Grid, and responsive design principles.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-python"></i>
+           </div>
+           <div class="course-content">
+               <h3>Python</h3>
+               <p>Learn one of the most versatile programming languages for web, data science, and automation.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fab fa-php"></i>
+           </div>
+           <div class="course-content">
+               <h3>PHP</h3>
+               <p>Build dynamic websites and applications with this powerful server-side scripting language.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+       <div class="course-card">
+           <div class="course-icon">
+               <i class="fas fa-paint-brush"></i>
+           </div>
+           <div class="course-content">
+               <h3>Graphics Design</h3>
+               <p>Master design principles, tools like Photoshop and Illustrator, and create stunning visuals.</p>
+               <a href="sign up.html" class="enroll-btn">Enroll Now</a>
+           </div>
+       </div>
+   </div>
+   <div class="b"><button><a href="sign up.html">join Now</a></button></div>
+   <footer class="site-footer">
+       <div class="footer-content">
+           <div class="footer-section">
+               <h3>Quick Links</h3>
+               <ul>
+                   <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                   <li><a href="about.html"><i class="fa-solid fa-address-card"></i>About Us</a></li>
+                   <li><a href="available.html"><i class="fa-solid fa-book"></i>Courses</a></li>
+                   <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
+               </ul>
+           </div>
+           <div class="footer-section">
+               <h3>Contact Info</h3>
+               <p><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</p>
+               <p><i class="fas fa-phone"></i>0796318028</p>
+               <p><i class="fas fa-envelope"></i> info@flscourses.com</p>
+           </div>
+           <div class="footer-section">
+               <h3>Follow Us</h3>
+               <div class="social-icons">
+                   <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                   <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+                   <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                   <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+               </div>
+           </div>
+       </div>
+       <div class="footer-bottom">
+           <p>&copy; 2025 FLS Computer Courses. All Rights Reserved.</p>
+       </div>
+   </footer>
+   
+    <script>
+        // Toggle active state
+        function toggleActive(card) {
+            card.classList.toggle('active');
+        }
+        
+        // Mark as completed
+        function markCompleted(card) {
+            card.classList.toggle('completed');
+        }
+        
+        // Highlight temporarily
+        function highlightCard(card) {
+            card.classList.add('highlight');
+            setTimeout(() => {
+                card.classList.remove('highlight');
+            }, 2000);
+        }
+        
+        // You can trigger these actions based on other events too
+        document.addEventListener('DOMContentLoaded', function() {
+            // Example: Highlight first card when page loads
+            setTimeout(() => {
+                document.getElementById('card1').classList.add('highlight');
+                setTimeout(() => {
+                    document.getElementById('card1').classList.remove('highlight');
+                }, 2000);
+            }, 1000);
+        });
+          // Manual slide control
+       let currentSlide = 0;
+       const slideCount = 5;
+       const track = document.querySelector('.slider-track');
+       
+       function moveSlide(direction) {
+           currentSlide = (currentSlide + direction + slideCount) % slideCount;
+           updateSlidePosition();
+       }
+       
+       function updateSlidePosition() {
+           track.style.transform = `translateX(-${currentSlide * 20}%)`;
+       }
+       
+       // Auto-slide control
+       let autoSlideInterval;
+       let isAutoSliding = true;
+       
+       function startAutoSlide() {
+           autoSlideInterval = setInterval(() => {
+               currentSlide = (currentSlide + 1) % slideCount;
+               updateSlidePosition();
+           }, 3000);
+       }
+       
+       function toggleAutoSlide() {
+           const button = document.querySelector('.slider-nav button:last-child');
+           if (isAutoSliding) {
+               clearInterval(autoSlideInterval);
+               track.classList.remove('auto-slide');
+               button.textContent = 'Play';
+           } else {
+               startAutoSlide();
+               track.classList.add('auto-slide');
+               button.textContent = 'Pause';
+           }
+           isAutoSliding = !isAutoSliding;
+       }
+       
+       // Initialize
+       document.addEventListener('DOMContentLoaded', () => {
+           startAutoSlide();
+       });
+    </script>
+</body>
+</html>
